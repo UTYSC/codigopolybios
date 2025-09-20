@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descifradopolybios</title>
+</head>
+<body>
+       <script>
+//1 Definión tabla
+const tablaPolybios ={
+    "A":"11", "B":"12", "C":"13", "D":"14", "E":"15",
+    "F":"21", "G":"22", "H":"23", "I":"24", "J":"24", "K":"25",
+    "L":"31", "M":"32", "N":"33", "O":"34", "P":"35",
+    "Q":"41", "R":"42", "S":"43", "T":"44", "U":"45",
+    "V":"51", "W":"52", "X":"53", "Y":"54", "Z":"55"
+
+}
+//2 crear tabla inversa
+const tablaInversa = {};
+for (let letra in tablaPolybios) { //for in recorre propiedades de un objeto
+    tablaInversa[tablaPolybios[letra]] = letra;
+}
+//3 Función descifrar
+function descifrar(cifrado)
+{
+    let resultado=" ";
+    //3.1 Dividir bloque
+    let bloques = cifrado.split(" "); //separa por espacios
+
+    for (let bloque of bloques) //3.2 recorrer bloques
+    {
+        //3.3 buscar número en tabla inversa
+        if ( bloque  === " ")
+        {
+            resultado += " "; //Mantiene espacios
+        }
+        else
+        {
+            //3.4 añadir letra al resultado
+            resultado += tablaInversa[bloque] || "-"; //si no encuentra nada añade espacio
+        }
+        
+    }
+    //3.5 devolver resultado
+    return resultado;
+}
+//4 Escribir exto ejemplo
+let mensajecifrado="23 34 31 11  32 45 33 14 34";
+console.log("Mensaje cifrado: " + mensajecifrado);
+
+let descifradomensaje=descifrar(mensajecifrado);
+console.log("Mensaje descifrado: " + descifradomensaje);
+</script>
+
+</body>
+</html>
